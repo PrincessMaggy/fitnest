@@ -1,0 +1,92 @@
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  View,
+  Image,
+  Dimensions,
+  Text,
+} from "react-native";
+import { Spacing } from "@/constants/Spacing";
+// import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { TouchableOpacity } from "react-native";
+import { Colors } from "@/constants/Colors";
+import { Button } from "react-native-paper";
+
+export default function MainOnboarding() {
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+      <LinearGradient
+        colors={["#9AC4FF", "#94A7FE"]}
+        style={styles.background}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+      />
+      <View style={styles.container}>
+        <Image
+          source={require("../assets/images/fitnessX2.png")}
+          style={styles.logo}
+        />
+        <Text style={styles.subtext}>Everybody can train</Text>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Button style={styles.button}>
+            <Text style={styles.text}>Get Started</Text>
+          </Button>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: Spacing.padding.sm,
+  },
+  container: {
+    position: "absolute",
+    top: Spacing.padding.md,
+    height: Dimensions.get("window").height / 1.2,
+    width: Dimensions.get("window").width,
+    justifyContent: "center",
+    flexDirection: "column",
+    gap: Spacing.padding.md,
+    alignContent: "space-between",
+    alignItems: "center",
+  },
+  logo: {
+    width: Dimensions.get("window").width / 1.5,
+    resizeMode: "contain",
+  },
+  background: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  subtext: {
+    color: Colors.text.primary,
+    fontSize: Spacing.padding.md,
+  },
+  button: {
+    padding: 15,
+    alignItems: "center",
+    borderRadius: 50,
+    backgroundColor: Colors.text.inverse,
+    marginTop: Spacing.padding.md,
+    width: Dimensions.get("window").width / 1.4,
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: Spacing.padding.lg,
+    width: "100%",
+    alignItems: "center",
+  },
+  text: {
+    color: Colors.brand.primary,
+    fontWeight: 700,
+    fontSize: 15,
+  },
+});
