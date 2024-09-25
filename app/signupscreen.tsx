@@ -174,16 +174,24 @@ export default function SignUpScreen() {
                 />
               </TouchableOpacity>
             </View>
-            <Text
+            <View
               style={{
-                fontFamily: "Poppins",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Already have an account?{" "}
-              <TouchableOpacity>
+              <Text
+                style={{
+                  fontFamily: "Poppins",
+                }}
+              >
+                Already have an account?{" "}
+              </Text>
+              <TouchableOpacity style={{ alignSelf: "flex-start" }}>
                 <Text style={styles.loginText}>Login</Text>
               </TouchableOpacity>
-            </Text>
+            </View>
           </View>
         </ScrollView>
       </KeyboardAwareScrollView>

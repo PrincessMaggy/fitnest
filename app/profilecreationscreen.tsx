@@ -298,13 +298,14 @@ const styles = StyleSheet.create({
     color: Colors.text.inverse,
     fontFamily: "PoppinsBold",
   },
-  arrow: { width: 20, height: 20, resizeMode: "contain" },
+  arrow: { width: 18, height: 18, resizeMode: "contain" },
   background: {
     flexDirection: "row",
     width: Dimensions.get("window").width / 1.2,
     justifyContent: "center",
     alignItems: "center",
     padding: Spacing.padding.md,
+    gap: 10,
     borderRadius: 50,
   },
   dropdown: {

@@ -38,7 +38,18 @@ export default function GoalScreen({
             <Text style={styles.heading}>{heading}</Text>
             <Text style={styles.subheading}>{subheading}</Text>
           </View>
-
+          <LinearGradient
+            colors={["rgba(146, 163, 253, 0.2)", "rgba(146, 163, 253, 0.2)"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.sidebar}
+          />
+          <LinearGradient
+            colors={["rgba(146, 163, 253, 0.2)", "rgba(146, 163, 253, 0.2)"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.sidebar2}
+          />
           <LinearGradient
             colors={["#9AC4FF", "#94A7FE"]}
             start={{ x: 0, y: 0 }}
@@ -100,6 +111,26 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     backgroundColor: Colors.brand.primary,
     margin: Spacing.padding.md,
+  },
+  sidebar: {
+    position: "absolute",
+    top: "30%",
+    left: -20,
+    marginRight: 40,
+    width: Dimensions.get("window").width / 9,
+    borderRadius: 20,
+    height: Dimensions.get("window").height / 3,
+    backgroundColor: "rgba(146, 163, 253, 0.2)",
+  },
+  sidebar2: {
+    position: "absolute",
+    top: "30%",
+    right: -20,
+    marginLeft: 40,
+    width: Dimensions.get("window").width / 9,
+    borderRadius: 20,
+    height: Dimensions.get("window").height / 3,
+    backgroundColor: "rgba(146, 163, 253, 0.2)",
   },
   banner: {
     // position: "absolute",

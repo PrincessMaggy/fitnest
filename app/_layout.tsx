@@ -73,7 +73,11 @@ function RootLayout() {
               options={{ headerShown: false }}
             />
             <Stack.Screen name="loginscreen" options={{ headerShown: false }} />
-
+            <Stack.Screen
+              name="registrationsuccessscreen"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="home" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>

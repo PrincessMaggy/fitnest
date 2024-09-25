@@ -10,7 +10,6 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import CheckBox from "@react-native-community/checkbox";
 import { useState, useRef } from "react";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
@@ -21,10 +20,6 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
   const navigation: any = useNavigation();
-
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -100,7 +95,7 @@ export default function LoginScreen() {
 
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("profilecreationscreen");
+                navigation.navigate("registrationsuccessscreen");
               }}
             >
               <LinearGradient
@@ -109,8 +104,20 @@ export default function LoginScreen() {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
               >
+                {/* <Image
+                  style={{
+                    width: 10,
+                    height: 10,
+                    resizeMode: "contain",
+                  }}
+                  src={require("../assets/images/Login.png")}
+                /> */}
                 <Text style={styles.button}>Login</Text>
               </LinearGradient>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text style={styles.forgot}>Forgot your password? </Text>
             </TouchableOpacity>
 
             <View style={styles.lineContainer}>
@@ -132,17 +139,24 @@ export default function LoginScreen() {
                 />
               </TouchableOpacity>
             </View>
-            <Text
+            <View
               style={{
-                fontFamily: "Poppins",
+                flexDirection: "row",
                 alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Don't have an account yet?{" "}
-              <TouchableOpacity>
+              <Text
+                style={{
+                  fontFamily: "Poppins",
+                }}
+              >
+                Don't have an account yet?{" "}
+              </Text>
+              <TouchableOpacity style={{ alignSelf: "flex-start" }}>
                 <Text style={styles.loginText}>Register</Text>
               </TouchableOpacity>
-            </Text>
+            </View>
           </View>
         </ScrollView>
       </KeyboardAwareScrollView>
@@ -205,32 +219,16 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width / 1.2,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: Spacing.padding.xxl,
+    marginTop: Dimensions.get("window").height / 6,
     padding: Spacing.padding.md,
     borderRadius: 50,
   },
-  privacy: {
+  forgot: {
     textDecorationLine: "underline",
     fontSize: 11,
     color: Colors.text.secondary,
   },
-  terms: {
-    textDecorationLine: "underline",
-    fontSize: 11,
-    color: Colors.text.secondary,
-  },
-  checkContainer: {
-    flexDirection: "row",
-    gap: Spacing.padding.md,
-    width: Dimensions.get("window").width / 1.2,
-  },
-  condition: {
-    color: Colors.text.secondary,
-    fontFamily: "Poppins",
-    width: Dimensions.get("window").width / 1.4,
-    fontSize: 12,
-    lineHeight: 17,
-  },
+
   socialIcons: {
     width: 60,
     height: 60,

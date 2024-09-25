@@ -32,7 +32,11 @@ export default function GoalsScreens() {
   ];
 
   const titles = ["Improve Shape", "Lean & Tone", "Lose a Fat"];
-  const heading = ["What is your goal ?", "Get Burn", "Eat Well"];
+  const heading = [
+    "What is your goal ?",
+    "What is your goal ?",
+    "What is your goal ?",
+  ];
   const subheading = [
     "It will help us to choose a best program for you",
     "It will help us to choose a best program for you",
