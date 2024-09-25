@@ -1,6 +1,5 @@
 import React, { useState, createContext, ReactNode, useEffect } from "react";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 interface User {
@@ -18,12 +17,13 @@ interface AuthContextType {
   onLogin: (identity: string, password: string) => Promise<void>;
   onLogout: () => Promise<void>;
   isLoading: boolean;
-  isFirstTimeUser: null;
-  setIsFirstTimeUser: (value: null) => void;
+  isFirstTimeUser: boolean;
+  setIsFirstTimeUser: (value: boolean) => void;
   setUser: (user: User | null) => void;
   errorMsg: string;
   setIsLoading: (loading: boolean) => void;
   setErrorMsg: (message: string) => void;
+  checkUserSession: () => Promise<void>;
 }
 
 const defaultAuthContext: AuthContextType = {
@@ -32,12 +32,13 @@ const defaultAuthContext: AuthContextType = {
   onLogin: async () => {},
   onLogout: async () => {},
   isLoading: false,
-  isFirstTimeUser: null,
+  isFirstTimeUser: false,
   setIsFirstTimeUser: () => {},
   setUser: () => {},
   errorMsg: "",
   setIsLoading: () => {},
   setErrorMsg: () => {},
+  checkUserSession: async () => {},
 };
 
 export const AuthenticationContext =
@@ -50,7 +51,25 @@ export const AuthenticationContextProvider: React.FC<
 
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isFirstTimeUser, setIsFirstTimeUser] = useState(null);
+  const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
+
+  const checkUserSession = async () => {
+    setIsLoading(true);
+    try {
+      const response = await AsyncStorage.getItem("fitnessX-FirstTimeUser");
+      if (response) {
+        console.log(response, "user session");
+        setIsFirstTimeUser(false);
+      }
+    } catch (error: any) {
+      if (error) {
+        setErrorMsg("Error while checking user session.");
+        return;
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const onLogin = async (identity: string, password: string) => {
     const abortController = new AbortController();
@@ -133,6 +152,7 @@ export const AuthenticationContextProvider: React.FC<
         errorMsg,
         setIsLoading,
         setErrorMsg,
+        checkUserSession,
       }}
     >
       {children}

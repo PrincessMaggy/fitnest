@@ -1,37 +1,67 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { Stack } from "expo-router";
+import * as Font from "expo-font";
+import { useEffect, useState } from "react";
+import "react-native-reanimated";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { ActivityIndicator, StyleSheet } from "react-native";
+import { Colors } from "@/constants/Colors";
+import * as Sentry from "@sentry/react-native";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+Sentry.init({
+  dsn: "https://d4b6d7abf85aeaf07d04629174bf8bf5@o4507038565662720.ingest.us.sentry.io/4508012534038528",
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+  tracesSampleRate: 1.0,
+  _experiments: {
+    profilesSampleRate: 1.0,
+  },
+});
 
-export default function RootLayout() {
+function RootLayout() {
+  const [fontLoaded, setFontLoaded] = useState(false);
+
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+    async function loadFonts() {
+      await Font.loadAsync({
+        Poppins: require("../assets/fonts/Poppins-Black.ttf"),
+        PoppinsItalic: require("../assets/fonts/Poppins-BlackItalic.ttf"),
+        PoppinsBold: require("../assets/fonts/Poppins-Bold.ttf"),
+        PoppinsRegular: require("../assets/fonts/Poppins-Regular.ttf"),
+      });
     }
-  }, [loaded]);
+    loadFonts().then(() => setFontLoaded(true));
+  }, []);
 
-  if (!loaded) {
+  if (!fontLoaded) {
+    <ActivityIndicator style={styles.loader} color={Colors.brand.grad1} />;
     return null;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="launchscreen" options={{ headerShown: false }} />
+        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+        <Stack.Screen name="signupscreen" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  loader: {
+    position: "absolute",
+    alignSelf: "center",
+    top: "50%",
+  },
+});
+
+export default Sentry.wrap(RootLayout);

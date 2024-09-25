@@ -8,13 +8,14 @@ import {
   Text,
 } from "react-native";
 import { Spacing } from "@/constants/Spacing";
-// import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
-export default function MainOnboarding() {
+export default function LaunchScreen() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
@@ -30,7 +31,10 @@ export default function MainOnboarding() {
           style={styles.logo}
         />
         <Text style={styles.subtext}>Everybody can train</Text>
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => navigation.navigate("onboarding")}
+        >
           <Button style={styles.button}>
             <Text style={styles.text}>Get Started</Text>
           </Button>
@@ -69,6 +73,7 @@ const styles = StyleSheet.create({
   subtext: {
     color: Colors.text.primary,
     fontSize: Spacing.padding.md,
+    fontFamily: "Poppins",
   },
   button: {
     padding: 15,
@@ -88,5 +93,6 @@ const styles = StyleSheet.create({
     color: Colors.brand.primary,
     fontWeight: 700,
     fontSize: 15,
+    fontFamily: "PoppinsBold",
   },
 });

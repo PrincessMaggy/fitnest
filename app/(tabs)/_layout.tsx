@@ -1,17 +1,28 @@
 import { Tabs } from "expo-router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
-import MainOnboarding from "../mainonboarding";
+import LaunchScreen from "../launchscreen";
+import SignUpScreen from "../signupscreen";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const { isAuthenticated } = useContext(AuthenticationContext);
+  const { isAuthenticated, checkUserSession, isFirstTimeUser } = useContext(
+    AuthenticationContext
+  );
+  useEffect(() => {
+    checkUserSession();
+  }, []);
+
+  if (!isFirstTimeUser) {
+    return <LaunchScreen />;
+  }
+
   if (!isAuthenticated) {
-    return <MainOnboarding />;
+    return <SignUpScreen />;
   }
   return (
     <Tabs
