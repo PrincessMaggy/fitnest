@@ -14,10 +14,13 @@ export default function TabLayout() {
     AuthenticationContext
   );
   useEffect(() => {
-    checkUserSession();
+    const run = async () => {
+      await checkUserSession();
+    };
+    run();
   }, []);
 
-  if (!isFirstTimeUser) {
+  if (isFirstTimeUser) {
     return <LaunchScreen />;
   }
 

@@ -1,6 +1,7 @@
 import React, { useState, createContext, ReactNode, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import { Alert } from "react-native";
 
 interface User {
   user_role: string;
@@ -32,7 +33,7 @@ const defaultAuthContext: AuthContextType = {
   onLogin: async () => {},
   onLogout: async () => {},
   isLoading: false,
-  isFirstTimeUser: false,
+  isFirstTimeUser: true,
   setIsFirstTimeUser: () => {},
   setUser: () => {},
   errorMsg: "",
@@ -54,12 +55,13 @@ export const AuthenticationContextProvider: React.FC<
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
 
   const checkUserSession = async () => {
+    // AsyncStorage.clear();
     setIsLoading(true);
     try {
       const response = await AsyncStorage.getItem("fitnessX-FirstTimeUser");
-      if (response) {
-        console.log(response, "user session");
+      if (response !== null) {
         setIsFirstTimeUser(false);
+      } else {
       }
     } catch (error: any) {
       if (error) {

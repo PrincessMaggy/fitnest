@@ -11,6 +11,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 import * as Sentry from "@sentry/react-native";
+import { AuthenticationContextProvider } from "@/context/AuthenticationContext";
 
 Sentry.init({
   dsn: "https://d4b6d7abf85aeaf07d04629174bf8bf5@o4507038565662720.ingest.us.sentry.io/4508012534038528",
@@ -44,15 +45,17 @@ function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="launchscreen" options={{ headerShown: false }} />
-        <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-        <Stack.Screen name="signupscreen" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <AuthenticationContextProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="launchscreen" options={{ headerShown: false }} />
+          <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+          <Stack.Screen name="signupscreen" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ThemeProvider>
+    </AuthenticationContextProvider>
   );
 }
 

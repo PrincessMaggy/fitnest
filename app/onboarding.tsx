@@ -5,17 +5,22 @@ import {
   Dimensions,
   View,
 } from "react-native";
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
 import OnboardingScreen from "@/components/onboardingscreen.component";
 import PagerView from "react-native-pager-view";
 import { AuthenticationContext } from "../context/AuthenticationContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 export default function OnboardingScreens() {
+  const navigation = useNavigation();
+
   const pagerRef = useRef<PagerView | null>(null);
-  const { setIsFirstTimeUser } = useContext(AuthenticationContext);
+  const { setIsFirstTimeUser, isFirstTimeUser } = useContext(
+    AuthenticationContext
+  );
 
   const imageSources = [
     require("../assets/images/track_goal.png"),
@@ -47,14 +52,19 @@ export default function OnboardingScreens() {
 
   const handleNext = (index: number) => {
     if (index === 3) {
-      setIsFirstTimeUser(true);
-      AsyncStorage.setItem("fitnessX-FirstTimeUser", JSON.stringify(true));
+      setIsFirstTimeUser(false);
+      AsyncStorage.setItem("fitnessX-FirstTimeUser", JSON.stringify("Not new"));
+      navigation.navigate("signupscreen");
     } else {
       if (pagerRef.current) {
         pagerRef.current.setPage(index + 1);
       }
     }
   };
+
+  useEffect(() => {
+    console.log(isFirstTimeUser, "isFirstTimeUser");
+  }, [isFirstTimeUser]);
 
   return (
     <SafeAreaView
