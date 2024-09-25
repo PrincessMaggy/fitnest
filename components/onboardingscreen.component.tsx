@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Spacing } from "@/constants/Spacing";
+import { Colors } from "@/constants/Colors";
 
 interface OnboardingScreenProps {
   imageSource: ImageSourcePropType;
@@ -56,10 +57,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   story: {
-    color: "#000",
-    fontWeight: 700,
+    color: Colors.text.primary,
     fontFamily: "Poppins",
-    fontSize: Spacing.fontsizes.md,
+    fontSize: 14,
   },
   button: {
     padding: 15,
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
     fontFamily: "PoppinsBold",
+    width: 200,
   },
   textContainer: {
     padding: Spacing.padding.md,

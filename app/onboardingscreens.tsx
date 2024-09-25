@@ -44,10 +44,10 @@ export default function OnboardingScreens() {
   ];
 
   const stories = [
-    "Don't worry if you have trouble determining your goals, we can help you track them.",
-    "Let’s keep burning to achieve your goals; it hurts only temporarily.",
-    "Let's start a healthy lifestyle with us; healthy eating is fun.",
-    "Improve the quality of your sleep with us; good sleep brings a good mood.",
+    "Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals",
+    "Let’s keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
+    "Let's start a healthy lifestyle with us, we can determine your diet every day. healthy eating is fun",
+    "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
   ];
 
   const handleNext = (index: number) => {
@@ -61,10 +61,6 @@ export default function OnboardingScreens() {
       }
     }
   };
-
-  useEffect(() => {
-    console.log(isFirstTimeUser, "isFirstTimeUser");
-  }, [isFirstTimeUser]);
 
   return (
     <SafeAreaView

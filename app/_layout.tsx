@@ -50,8 +50,16 @@ function RootLayout() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="launchscreen" options={{ headerShown: false }} />
-          <Stack.Screen name="onboarding" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="onboardingscreens"
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="signupscreen" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="profilecreationscreen"
+            options={{ headerShown: false }}
+          />
+
           <Stack.Screen name="+not-found" />
         </Stack>
       </ThemeProvider>

@@ -30,10 +30,10 @@ export default function LaunchScreen() {
           source={require("../assets/images/fitnessX2.png")}
           style={styles.logo}
         />
-        <Text style={styles.subtext}>Everybody can train</Text>
+        <Text style={styles.subtext}>Everybody Can Train</Text>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => navigation.navigate("onboarding")}
+          onPress={() => navigation.navigate("onboardingscreens")}
         >
           <Button style={styles.button}>
             <Text style={styles.text}>Get Started</Text>
@@ -62,7 +62,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: Dimensions.get("window").width / 1.5,
+    width: Dimensions.get("window").width / 2.8,
+    height: Dimensions.get("window").height / 20,
+
     resizeMode: "contain",
   },
   background: {
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
   },
   button: {
-    padding: 15,
+    padding: Spacing.padding.sm,
     alignItems: "center",
     borderRadius: 50,
     backgroundColor: Colors.text.inverse,

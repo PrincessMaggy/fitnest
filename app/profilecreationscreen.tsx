@@ -18,7 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SignUpScreen() {
+export default function ProfileCreationScreen() {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");

@@ -30,7 +30,7 @@ export const Colors = {
     grad1: "#C58BF2",
     grad2: "#EEA4CE",
     gray: "#131313",
-    headercolor: "#131313",
+    headercolor: "#1D1617",
   },
   ui: {
     primary: "#EF7D00",
@@ -40,7 +40,7 @@ export const Colors = {
     success: "#138000",
   },
   bg: {
-    primary: "#FFFFFF",
+    primary: "#F7F8F8",
     secondary: "#F1F1F1",
     tertiary: "#FFF9EB",
   },
