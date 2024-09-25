@@ -4,15 +4,18 @@ import {
   StatusBar,
   Dimensions,
   View,
+  TouchableOpacity,
+  Image,
 } from "react-native";
 import { useRef, useContext, useEffect } from "react";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
-import OnboardingScreen from "@/components/onboardingscreen.component";
 import PagerView from "react-native-pager-view";
 import { AuthenticationContext } from "../context/AuthenticationContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
+import GoalScreen from "@/components/goalscreen.component";
 
 export default function GoalsScreens() {
   const navigation: any = useNavigation();
@@ -23,38 +26,30 @@ export default function GoalsScreens() {
   );
 
   const imageSources = [
-    require("../assets/images/track_goal.png"),
-    require("../assets/images/get_burn.png"),
-    require("../assets/images/eat_well.png"),
-    require("../assets/images/improve_sleep.png"),
+    require("../assets/images/shape.png"),
+    require("../assets/images/tone.png"),
+    require("../assets/images/fat.png"),
   ];
 
-  const iconSources = [
-    require("../assets/images/Button1.png"),
-    require("../assets/images/Button2.png"),
-    require("../assets/images/Button3.png"),
-    require("../assets/images/Button4.png"),
-  ];
-
-  const titles = [
-    "Track Your Goal",
-    "Get Burn",
-    "Eat Well",
-    "Improve Sleep Quality",
+  const titles = ["Improve Shape", "Lean & Tone", "Lose a Fat"];
+  const heading = ["What is your goal ?", "Get Burn", "Eat Well"];
+  const subheading = [
+    "It will help us to choose a best program for you",
+    "It will help us to choose a best program for you",
+    "It will help us to choose a best program for you",
   ];
 
   const stories = [
-    "Don't worry if you have trouble determining your goals, We can help you determine and track your goals",
-    "Let’s keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
-    "Let's start a healthy lifestyle with us, we can determine your diet every day. healthy eating is fun",
-    "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
+    "I have a low amount of body fat and need / want to build more muscle",
+    "I’m “skinny fat”. look thin but have no shape. I want to add learn muscle in the right way",
+    "I have over 20 lbs to lose. I want to drop all this fat and gain muscle mass",
   ];
 
   const handleNext = (index: number) => {
-    if (index === 3) {
-      setIsFirstTimeUser(false);
-      AsyncStorage.setItem("fitnessX-FirstTimeUser", JSON.stringify("Not new"));
-      navigation.navigate("signupscreen");
+    if (index === 2) {
+      // setIsFirstTimeUser(false);
+      // AsyncStorage.setItem("fitnessX-FirstTimeUser", JSON.stringify("Not new"));
+      navigation.navigate("loginscreen");
     } else {
       if (pagerRef.current) {
         pagerRef.current.setPage(index + 1);
@@ -71,14 +66,26 @@ export default function GoalsScreens() {
       }}
     >
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <Ionicons
+          name="arrow-back"
+          size={24}
+          color="black"
+          style={styles.backIcon}
+        />
+      </TouchableOpacity>
       <PagerView style={styles.pagerView} initialPage={0} ref={pagerRef}>
-        {[...Array(4)].map((_, index) => (
+        {[...Array(3)].map((_, index) => (
           <View key={index}>
-            <OnboardingScreen
+            <GoalScreen
               imageSource={imageSources[index]}
+              heading={heading[index]}
+              subheading={subheading[index]}
               title={titles[index]}
               story={stories[index]}
-              iconSource={iconSources[index]}
               onNext={() => handleNext(index)}
             />
           </View>
@@ -118,5 +125,15 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontSize: 15,
     color: Colors.brand.primary,
+  },
+  backButton: {
+    position: "absolute",
+    top: 80,
+    left: 20,
+    zIndex: 10,
+  },
+  backIcon: {
+    width: 24,
+    height: 24,
   },
 });

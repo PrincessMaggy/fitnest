@@ -12,7 +12,7 @@ import { ActivityIndicator, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 import * as Sentry from "@sentry/react-native";
 import { AuthenticationContextProvider } from "@/context/AuthenticationContext";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 Sentry.init({
   dsn: "https://d4b6d7abf85aeaf07d04629174bf8bf5@o4507038565662720.ingest.us.sentry.io/4508012534038528",
 
@@ -45,26 +45,40 @@ function RootLayout() {
   }
 
   return (
-    <AuthenticationContextProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="launchscreen" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="onboardingscreens"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="signupscreen" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="profilecreationscreen"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="goalsscreens" options={{ headerShown: false }} />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AuthenticationContextProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="launchscreen"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="onboardingscreens"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="signupscreen"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="profilecreationscreen"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="goalsscreens"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="loginscreen" options={{ headerShown: false }} />
 
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </ThemeProvider>
-    </AuthenticationContextProvider>
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </ThemeProvider>
+      </AuthenticationContextProvider>
+    </GestureHandlerRootView>
   );
 }
 
