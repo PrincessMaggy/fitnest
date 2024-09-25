@@ -17,8 +17,11 @@ import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignUpScreen() {
+  const navigation: any = useNavigation();
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -69,7 +72,7 @@ export default function SignUpScreen() {
                   value={firstname}
                   placeholder="First Name"
                   style={styles.input}
-                  placeholderTextColor={Colors.text.secondary}
+                  placeholderTextColor={Colors.text.primary}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -82,7 +85,7 @@ export default function SignUpScreen() {
                   value={lastname}
                   style={styles.input}
                   placeholder="Last Name"
-                  placeholderTextColor={Colors.text.secondary}
+                  placeholderTextColor={Colors.text.primary}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -95,7 +98,7 @@ export default function SignUpScreen() {
                   value={email}
                   placeholder="Email"
                   style={styles.input}
-                  placeholderTextColor={Colors.text.secondary}
+                  placeholderTextColor={Colors.text.primary}
                 />
               </View>
               <View style={styles.inputContainer}>
@@ -109,7 +112,7 @@ export default function SignUpScreen() {
                   placeholder="Password"
                   style={styles.input}
                   secureTextEntry={!passwordVisible}
-                  placeholderTextColor={Colors.text.secondary}
+                  placeholderTextColor={Colors.text.primary}
                 />
                 <Ionicons
                   name={passwordVisible ? "eye-off" : "eye"}
@@ -137,7 +140,11 @@ export default function SignUpScreen() {
                 </TouchableOpacity>
               </Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("profilecreationscreen");
+              }}
+            >
               <LinearGradient
                 colors={["#9AC4FF", "#94A7FE"]}
                 style={styles.background}
@@ -203,6 +210,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     paddingHorizontal: 40,
+    fontFamily: "Poppins",
     width: Dimensions.get("window").width / 1.2,
   },
   icon: {

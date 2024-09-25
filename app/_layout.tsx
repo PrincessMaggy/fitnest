@@ -59,6 +59,7 @@ function RootLayout() {
             name="profilecreationscreen"
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="goalsscreens" options={{ headerShown: false }} />
 
           <Stack.Screen name="+not-found" />
         </Stack>

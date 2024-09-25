@@ -14,7 +14,7 @@ import { AuthenticationContext } from "../context/AuthenticationContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
-export default function OnboardingScreens() {
+export default function GoalsScreens() {
   const navigation: any = useNavigation();
 
   const pagerRef = useRef<PagerView | null>(null);

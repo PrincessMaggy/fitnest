@@ -15,7 +15,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
 export default function LaunchScreen() {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />

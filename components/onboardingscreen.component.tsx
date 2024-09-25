@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
     fontFamily: "PoppinsBold",
-    width: 200,
+    // width: 200,
   },
   textContainer: {
     padding: Spacing.padding.md,

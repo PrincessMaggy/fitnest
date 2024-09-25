@@ -9,24 +9,49 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Platform,
 } from "react-native";
-import CheckBox from "@react-native-community/checkbox";
 import { useState, useRef } from "react";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Ionicons } from "@expo/vector-icons";
+import { Dropdown } from "react-native-element-dropdown";
+import { useNavigation } from "@react-navigation/native";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 
 export default function ProfileCreationScreen() {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
+  const navigation: any = useNavigation();
 
+  const [gender, setGender] = useState([
+    {
+      label: "Female",
+      gender: "Female",
+    },
+    {
+      label: "Male",
+      gender: "Male",
+    },
+  ]);
+  const [dob, setDOB] = useState<Date>(new Date());
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [selectedGender, setSelectedGender] = useState("");
+  const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
+  const [show, setShow] = useState(false);
+
+  const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+    if (selectedDate) {
+      setDOB(selectedDate);
+    }
+    setShow(Platform.OS === "ios");
+  };
+
+  const showDatepicker = () => {
+    setShow(true);
+  };
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
@@ -43,140 +68,174 @@ export default function ProfileCreationScreen() {
       >
         <ScrollView>
           <View style={styles.container}>
-            <Text
-              style={{ fontFamily: "Poppins", color: Colors.brand.headercolor }}
-            >
-              Hey there,
-            </Text>
+            <Image
+              style={styles.banner}
+              source={require("../assets/images/MaskGroup.png")}
+            />
             <Text
               style={{
                 fontFamily: "PoppinsBold",
                 color: Colors.brand.headercolor,
                 fontSize: Spacing.fontsizes.md,
+              }}
+            >
+              Let's complete your profile
+            </Text>
+            <Text
+              style={{
+                fontFamily: "Poppins",
+                color: Colors.text.primary,
                 marginBottom: Spacing.padding.lg,
               }}
             >
-              Create an Account
+              It will help us to know more about you!
             </Text>
             <View>
               <View style={styles.inputContainer}>
                 <Image
-                  source={require("../assets/images/Profile.png")}
+                  source={require("../assets/images/user2.png")}
                   style={styles.icon}
                 />
-                <TextInput
-                  onChangeText={setFirstname}
-                  value={firstname}
-                  placeholder="First Name"
-                  style={styles.input}
-                  placeholderTextColor={Colors.text.secondary}
+                <Dropdown
+                  style={styles.dropdown}
+                  data={gender}
+                  maxHeight={300}
+                  labelField="label"
+                  valueField="gender"
+                  placeholderStyle={{
+                    color: Colors.text.primary,
+                    fontSize: 14,
+                  }}
+                  placeholder="Choose Gender"
+                  containerStyle={{
+                    borderRadius: 15,
+                  }}
+                  itemTextStyle={{
+                    color: Colors.text.primary,
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                  }}
+                  itemContainerStyle={{
+                    padding: Spacing.padding.sm / 2,
+                  }}
+                  value={selectedGender}
+                  onChange={(item) => {
+                    setSelectedGender(item.gender);
+                  }}
                 />
               </View>
+
               <View style={styles.inputContainer}>
                 <Image
-                  source={require("../assets/images/Profile.png")}
+                  source={require("../assets/images/Calendar.png")}
                   style={styles.icon}
                 />
-                <TextInput
-                  onChangeText={setLastname}
-                  value={lastname}
-                  style={styles.input}
-                  placeholder="Last Name"
-                  placeholderTextColor={Colors.text.secondary}
-                />
+                <TouchableOpacity onPress={showDatepicker}>
+                  {!show && (
+                    <Text
+                      style={{
+                        color: Colors.text.primary,
+                        padding: Spacing.padding.md,
+                        fontFamily: "Poppins",
+                        marginLeft: Spacing.padding.lg,
+                      }}
+                    >
+                      Date of Birth
+                    </Text>
+                  )}
+                  {show && (
+                    <DateTimePicker
+                      value={dob}
+                      mode="date"
+                      display="default"
+                      onChange={onChange}
+                      style={{
+                        padding: Spacing.padding.sm,
+                        marginLeft: Spacing.padding.sm,
+                        alignSelf: "flex-start",
+                      }}
+                    />
+                  )}
+                </TouchableOpacity>
               </View>
-              <View style={styles.inputContainer}>
-                <Image
-                  source={require("../assets/images/Message.png")}
-                  style={styles.icon}
-                />
-                <TextInput
-                  onChangeText={setEmail}
-                  value={email}
-                  placeholder="Email"
-                  style={styles.input}
-                  placeholderTextColor={Colors.text.secondary}
-                />
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: Dimensions.get("window").width / 1.2,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: Spacing.padding.sm,
+                }}
+              >
+                <View style={styles.inputContainer2}>
+                  <Image
+                    source={require("../assets/images/weight-scale.png")}
+                    style={styles.icon}
+                  />
+                  <TextInput
+                    onChangeText={setWeight}
+                    value={weight}
+                    placeholder="Your Weight"
+                    style={styles.input2}
+                    keyboardType="numeric"
+                    maxLength={5}
+                    placeholderTextColor={Colors.text.primary}
+                  />
+                </View>
+                <View style={styles.subbtnContainer}>
+                  <Text style={styles.subbtn}>KG</Text>
+                </View>
               </View>
-              <View style={styles.inputContainer}>
-                <Image
-                  source={require("../assets/images/Lock.png")}
-                  style={styles.icon}
-                />
-                <TextInput
-                  onChangeText={setPassword}
-                  value={password}
-                  placeholder="Password"
-                  style={styles.input}
-                  secureTextEntry={!passwordVisible}
-                  placeholderTextColor={Colors.text.secondary}
-                />
-                <Ionicons
-                  name={passwordVisible ? "eye-off" : "eye"}
-                  size={20}
-                  color={Colors.text.secondary}
-                  style={styles.icon2}
-                  onPress={() => setPasswordVisible(!passwordVisible)}
-                />
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  width: Dimensions.get("window").width / 1.2,
+                  alignItems: "center",
+                  height: 70,
+                  justifyContent: "space-between",
+                  marginBottom: Spacing.padding.sm,
+                }}
+              >
+                <View style={styles.inputContainer2}>
+                  <Image
+                    source={require("../assets/images/Swap.png")}
+                    style={styles.icon}
+                  />
+                  <TextInput
+                    onChangeText={setHeight}
+                    value={height}
+                    placeholder="Your Height"
+                    style={styles.input2}
+                    keyboardType="numeric"
+                    maxLength={5}
+                    placeholderTextColor={Colors.text.primary}
+                  />
+                </View>
+                <View style={styles.subbtnContainer}>
+                  <Text style={styles.subbtn}>CM</Text>
+                </View>
               </View>
             </View>
-            <View style={styles.checkContainer}>
-              <CheckBox
-                disabled={false}
-                value={toggleCheckBox}
-                onValueChange={(newValue) => setToggleCheckBox(newValue)}
-              />
-              <Text style={styles.condition}>
-                By continuing you accept our{" "}
-                <TouchableOpacity>
-                  <Text style={styles.privacy}>Privacy Policy </Text>
-                </TouchableOpacity>
-                and
-                <TouchableOpacity>
-                  <Text style={styles.terms}>Term of Use</Text>
-                </TouchableOpacity>
-              </Text>
-            </View>
-            <TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("goalsscreens");
+              }}
+            >
               <LinearGradient
                 colors={["#9AC4FF", "#94A7FE"]}
                 style={styles.background}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
               >
-                <Text style={styles.button}>Register</Text>
+                <Text style={styles.button}>Next </Text>
+                <Image
+                  source={require("../assets/images/ArrowRight.png")}
+                  style={styles.arrow}
+                />
               </LinearGradient>
             </TouchableOpacity>
-
-            <View style={styles.lineContainer}>
-              <View style={styles.line} />
-              <Text>Or</Text>
-              <View style={styles.line} />
-            </View>
-            <View style={styles.socialContainer}>
-              <TouchableOpacity>
-                <Image
-                  source={require("../assets/images/google.png")}
-                  style={styles.socialIcons}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  source={require("../assets/images/facebook.png")}
-                  style={styles.socialIcons}
-                />
-              </TouchableOpacity>
-            </View>
-            <Text
-              style={{
-                fontFamily: "Poppins",
-              }}
-            >
-              Already have an account?{" "}
-              <TouchableOpacity>
-                <Text style={styles.loginText}>Login</Text>
-              </TouchableOpacity>
-            </Text>
           </View>
         </ScrollView>
       </KeyboardAwareScrollView>
@@ -196,14 +255,35 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     position: "relative",
-    marginBottom: Spacing.padding.lg,
+    marginBottom: Spacing.padding.md,
     backgroundColor: Colors.bg.primary,
     borderRadius: 15,
+  },
+  banner: {
+    width: Dimensions.get("window").width / 1.5,
+    height: Dimensions.get("window").height / 3,
+    resizeMode: "stretch",
+    alignSelf: "center",
   },
   input: {
     height: 50,
     paddingHorizontal: 40,
-    width: Dimensions.get("window").width / 1.2,
+    width: Dimensions.get("window").width / 1.4,
+    fontFamily: "Poppins",
+    fontSize: 14,
+  },
+  input2: {
+    height: 50,
+    paddingHorizontal: 40,
+    width: Dimensions.get("window").width / 1.5,
+    fontFamily: "Poppins",
+    fontSize: 14,
+  },
+  inputContainer2: {
+    position: "relative",
+    backgroundColor: Colors.bg.primary,
+    borderRadius: 15,
+    width: Dimensions.get("window").width / 1.5,
   },
   icon: {
     position: "absolute",
@@ -211,69 +291,37 @@ const styles = StyleSheet.create({
     top: 15,
     width: 20,
     height: 20,
-  },
-  icon2: {
-    position: "absolute",
-    right: 15,
-    top: 15,
-  },
-  lineContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: Spacing.padding.md,
-    width: Dimensions.get("window").width / 1.2,
-    gap: Spacing.padding.md,
-  },
-  line: {
-    flex: 1,
-    height: 1,
-    backgroundColor: Colors.text.secondary,
+    resizeMode: "contain",
   },
   button: {
     alignItems: "center",
     color: Colors.text.inverse,
     fontFamily: "PoppinsBold",
   },
+  arrow: { width: 20, height: 20, resizeMode: "contain" },
   background: {
+    flexDirection: "row",
     width: Dimensions.get("window").width / 1.2,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: Spacing.padding.xxl,
     padding: Spacing.padding.md,
     borderRadius: 50,
   },
-  privacy: {
-    textDecorationLine: "underline",
-    fontSize: 11,
-    color: Colors.text.secondary,
-  },
-  terms: {
-    textDecorationLine: "underline",
-    fontSize: 11,
-    color: Colors.text.secondary,
-  },
-  checkContainer: {
-    flexDirection: "row",
-    gap: Spacing.padding.md,
-    width: Dimensions.get("window").width / 1.2,
-  },
-  condition: {
-    color: Colors.text.secondary,
+  dropdown: {
+    height: 50,
+    width: Dimensions.get("window").width / 1.5,
+    alignSelf: "center",
     fontFamily: "Poppins",
-    width: Dimensions.get("window").width / 1.4,
-    fontSize: 12,
-    lineHeight: 17,
+    zIndex: 10,
+    fontSize: 14,
   },
-  socialIcons: {
-    width: 60,
-    height: 60,
+  subbtn: {
+    color: "#ffffff",
   },
-  socialContainer: {
-    flexDirection: "row",
-    gap: Spacing.padding.lg,
-  },
-  loginText: {
-    color: Colors.brand.grad1,
-    fontFamily: "Poppins",
+  subbtnContainer: {
+    padding: Spacing.padding.md,
+    borderRadius: 15,
+    backgroundColor: Colors.brand.grad1,
+    alignSelf: "center",
   },
 });
