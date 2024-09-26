@@ -10,19 +10,10 @@ import "react-native-reanimated";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
-import * as Sentry from "@sentry/react-native";
 import { AuthenticationContextProvider } from "@/context/AuthenticationContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-Sentry.init({
-  dsn: "https://d4b6d7abf85aeaf07d04629174bf8bf5@o4507038565662720.ingest.us.sentry.io/4508012534038528",
 
-  tracesSampleRate: 1.0,
-  _experiments: {
-    profilesSampleRate: 1.0,
-  },
-});
-
-function RootLayout() {
+export default function RootLayout() {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   const colorScheme = useColorScheme();
@@ -93,5 +84,3 @@ const styles = StyleSheet.create({
     top: "50%",
   },
 });
-
-export default Sentry.wrap(RootLayout);
