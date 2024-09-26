@@ -11,7 +11,7 @@ import { useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function Home() {
+export default function ActivityTracker() {
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
 
   return (

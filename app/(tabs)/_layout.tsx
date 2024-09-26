@@ -7,14 +7,12 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
 import LaunchScreen from "../launchscreen";
 import SignUpScreen from "../signupscreen";
-import Home from "../home";
 import LoginScreen from "../loginscreen";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const { isAuthenticated, checkUserSession, isFirstTimeUser } = useContext(
-    AuthenticationContext
-  );
+  const { isAuthenticated, checkUserSession, isFirstTimeUser, navigateHome } =
+    useContext(AuthenticationContext);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const run = async () => {
@@ -31,14 +29,14 @@ export default function TabLayout() {
       </View>
     );
   }
-
   if (isFirstTimeUser) {
     return <LaunchScreen />;
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !navigateHome) {
     return <LoginScreen />;
   }
+
   return (
     <Tabs
       screenOptions={{
@@ -58,13 +56,14 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="activitytracker"
         options={{
-          title: "Explore",
+          title: "Activity Tracker",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
+              name={focused ? "home" : "home-outline"}
               color={color}
             />
           ),

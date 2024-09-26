@@ -1,7 +1,5 @@
 import React, { useState, createContext, ReactNode, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import { Alert } from "react-native";
 
 interface User {
   user_role: string;
@@ -14,6 +12,8 @@ interface AuthContextProviderProps {
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  navigateHome: boolean;
+  setNavigateHome: (navigateHome: boolean) => void;
   user: User | null;
   onLogin: (identity: string, password: string) => Promise<void>;
   onLogout: () => Promise<void>;
@@ -29,6 +29,7 @@ interface AuthContextType {
 
 const defaultAuthContext: AuthContextType = {
   isAuthenticated: false,
+  navigateHome: false,
   user: null,
   onLogin: async () => {},
   onLogout: async () => {},
@@ -38,6 +39,7 @@ const defaultAuthContext: AuthContextType = {
   setUser: () => {},
   errorMsg: "",
   setIsLoading: () => {},
+  setNavigateHome: () => {},
   setErrorMsg: () => {},
   checkUserSession: async () => {},
 };
@@ -49,7 +51,7 @@ export const AuthenticationContextProvider: React.FC<
   AuthContextProviderProps
 > = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-
+  const [navigateHome, setNavigateHome] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
@@ -58,11 +60,19 @@ export const AuthenticationContextProvider: React.FC<
     // AsyncStorage.clear();
     setIsLoading(true);
     try {
+      const userData = await AsyncStorage.getItem("fitnessX-LoggedInUser");
       const response = await AsyncStorage.getItem("fitnessX-FirstTimeUser");
       if (response !== null) {
         setIsFirstTimeUser(false);
       } else {
         setIsFirstTimeUser(true);
+      }
+      if (userData) {
+        setUser(JSON.parse(userData));
+        setNavigateHome(true);
+      } else {
+        setIsFirstTimeUser(true);
+        setNavigateHome(false);
       }
     } catch (error: any) {
       if (error) {
@@ -115,8 +125,9 @@ export const AuthenticationContextProvider: React.FC<
   const onLogout = async () => {
     setIsLoading(true);
     try {
-      await AsyncStorage.removeItem("fitnessX-user");
+      await AsyncStorage.removeItem("fitnessX-LoggedInUser");
       setUser(null);
+      setNavigateHome(false);
     } catch (error) {
       console.error("Error logging out:", error);
     } finally {
@@ -139,6 +150,8 @@ export const AuthenticationContextProvider: React.FC<
         setIsLoading,
         setErrorMsg,
         checkUserSession,
+        navigateHome,
+        setNavigateHome,
       }}
     >
       {children}

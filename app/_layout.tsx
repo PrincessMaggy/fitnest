@@ -73,7 +73,6 @@ export default function RootLayout() {
               name="registrationsuccessscreen"
               options={{ headerShown: false }}
             />
-            <Stack.Screen name="home" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" />
           </Stack>
         </ThemeProvider>

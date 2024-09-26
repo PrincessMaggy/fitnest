@@ -10,15 +10,15 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useNavigation } from "@react-navigation/native";
+import { AuthenticationContext } from "@/context/AuthenticationContext";
 
 export default function RegistrationSuccessScreen() {
-  const navigation: any = useNavigation();
+  const { setNavigateHome } = useContext(AuthenticationContext);
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
 
   return (
@@ -67,8 +67,7 @@ export default function RegistrationSuccessScreen() {
 
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("home");
-                // Alert.alert("Coming Soon");
+                setNavigateHome(true);
               }}
             >
               <LinearGradient

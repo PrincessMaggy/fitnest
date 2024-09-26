@@ -101,7 +101,7 @@ export default function LoginScreen() {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("registrationsuccessscreen");
-                // onLogin(email, password);
+                onLogin(email, password);
               }}
             >
               <LinearGradient
