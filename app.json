@@ -14,14 +14,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.maggy.fitnest"
+      "bundleIdentifier": "com.princessmaggy.fitnest"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.samuelo.fitnest"
+      "package": "com.princessmaggy.fitnest"
     },
     "web": {
       "bundler": "metro",

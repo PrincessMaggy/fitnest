@@ -20,7 +20,7 @@ export default function LaunchScreen() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
       <LinearGradient
-        colors={["#9AC4FF", "#94A7FE"]}
+        colors={["#9AC4FF", "#6B82FD"]}
         style={styles.background}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   subtext: {
-    color: Colors.text.primary,
+    // color: Colors.text.primary,
+    color: "#ffffff",
     fontSize: Spacing.padding.md,
     fontFamily: "Poppins",
   },
@@ -92,8 +93,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: Colors.brand.primary,
-    fontWeight: 700,
+    color: "#6B82FD",
     fontSize: 15,
     fontFamily: "PoppinsBold",
   },

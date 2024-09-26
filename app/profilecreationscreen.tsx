@@ -224,7 +224,7 @@ export default function ProfileCreationScreen() {
               }}
             >
               <LinearGradient
-                colors={["#9AC4FF", "#94A7FE"]}
+                colors={["#9AC4FF", "#6B82FD"]}
                 style={styles.background}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}

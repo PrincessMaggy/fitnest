@@ -42,7 +42,10 @@ export default function LoginScreen() {
         <ScrollView>
           <View style={styles.container}>
             <Text
-              style={{ fontFamily: "Poppins", color: Colors.brand.headercolor }}
+              style={{
+                fontFamily: "Poppins",
+                color: Colors.brand.headercolor,
+              }}
             >
               Hey there,
             </Text>
@@ -99,7 +102,7 @@ export default function LoginScreen() {
               }}
             >
               <LinearGradient
-                colors={["#9AC4FF", "#94A7FE"]}
+                colors={["#9AC4FF", "#6B82FD"]}
                 style={styles.background}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -153,7 +156,10 @@ export default function LoginScreen() {
               >
                 Don't have an account yet?{" "}
               </Text>
-              <TouchableOpacity style={{ alignSelf: "flex-start" }}>
+              <TouchableOpacity
+                style={{ alignSelf: "flex-start" }}
+                onPress={() => navigation.navigate("signupscreen")}
+              >
                 <Text style={styles.loginText}>Register</Text>
               </TouchableOpacity>
             </View>
@@ -168,6 +174,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: 40,
   },
   container: {
     marginTop: Spacing.padding.lg,

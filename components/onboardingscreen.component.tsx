@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  SafeAreaView,
   View,
   Image,
   Dimensions,
@@ -10,6 +9,7 @@ import {
 } from "react-native";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
+// import {Image} from 'expo-image'
 
 interface OnboardingScreenProps {
   imageSource: ImageSourcePropType;
@@ -27,29 +27,22 @@ export default function OnboardingScreen({
   onNext,
 }: OnboardingScreenProps) {
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View>
       <View>
-        <View>
-          <Image source={imageSource} style={styles.banner} />
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.story}>{story}</Text>
-        </View>
-        <TouchableOpacity onPress={onNext}>
-          <Image source={iconSource} style={styles.nextbtn} />
-        </TouchableOpacity>
+        <Image source={imageSource} style={styles.banner} />
       </View>
-    </SafeAreaView>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.story}>{story}</Text>
+      </View>
+      <TouchableOpacity onPress={onNext}>
+        <Image source={iconSource} style={styles.nextbtn} />
+      </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: Spacing.padding.sm,
-  },
   banner: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height / 2,
@@ -58,7 +51,7 @@ const styles = StyleSheet.create({
   },
   story: {
     color: Colors.text.primary,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     fontSize: 14,
   },
   button: {
@@ -70,7 +63,6 @@ const styles = StyleSheet.create({
     fontSize: Spacing.fontsizes.lg,
     marginBottom: 20,
     color: "#000",
-    fontWeight: "bold",
     fontFamily: "PoppinsBold",
     // width: 200,
   },

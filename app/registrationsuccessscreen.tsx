@@ -47,7 +47,7 @@ export default function RegistrationSuccessScreen() {
               style={{
                 fontFamily: "PoppinsBold",
                 color: Colors.brand.headercolor,
-                fontSize: Spacing.fontsizes.md,
+                fontSize: 18,
                 marginTop: Spacing.padding.md,
               }}
             >
@@ -57,7 +57,7 @@ export default function RegistrationSuccessScreen() {
               style={{
                 fontFamily: "Poppins",
                 color: Colors.text.secondary,
-                fontSize: 12,
+                fontSize: 14,
                 width: "60%",
                 textAlign: "center",
               }}
@@ -72,7 +72,7 @@ export default function RegistrationSuccessScreen() {
               }}
             >
               <LinearGradient
-                colors={["#9AC4FF", "#94A7FE"]}
+                colors={["#9AC4FF", "#6B82FD"]}
                 style={styles.background}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: 30,
   },
   container: {
     marginTop: Spacing.padding.lg,

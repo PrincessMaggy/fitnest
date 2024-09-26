@@ -47,7 +47,12 @@ export default function SignUpScreen() {
         <ScrollView>
           <View style={styles.container}>
             <Text
-              style={{ fontFamily: "Poppins", color: Colors.brand.headercolor }}
+              style={{
+                fontFamily: "Poppins",
+                color: Colors.brand.headercolor,
+                fontSize: 15,
+                marginTop: Spacing.padding.md,
+              }}
             >
               Hey there,
             </Text>
@@ -56,7 +61,7 @@ export default function SignUpScreen() {
                 fontFamily: "PoppinsBold",
                 color: Colors.brand.headercolor,
                 fontSize: Spacing.fontsizes.md,
-                marginBottom: Spacing.padding.lg,
+                marginBottom: Spacing.padding.md,
               }}
             >
               Create an Account
@@ -127,17 +132,19 @@ export default function SignUpScreen() {
               <CheckBox
                 disabled={false}
                 value={toggleCheckBox}
+                tintColors={{ true: "#6B82FD", false: "#D3D3D3" }}
+                onFillColor="#6B82FD"
+                onCheckColor="#FFFFFF"
+                // boxType="circle"
                 onValueChange={(newValue) => setToggleCheckBox(newValue)}
               />
               <Text style={styles.condition}>
-                By continuing you accept our{" "}
-                <TouchableOpacity>
-                  <Text style={styles.privacy}>Privacy Policy </Text>
-                </TouchableOpacity>
-                and
-                <TouchableOpacity>
-                  <Text style={styles.terms}>Term of Use</Text>
-                </TouchableOpacity>
+                By continuing you accept our {/* <TouchableOpacity> */}
+                <Text style={styles.privacy}>Privacy Policy </Text>
+                {/* </TouchableOpacity> */}
+                and {/* <TouchableOpacity> */}
+                <Text style={styles.terms}>Term of Use</Text>
+                {/* </TouchableOpacity> */}
               </Text>
             </View>
             <TouchableOpacity
@@ -146,7 +153,7 @@ export default function SignUpScreen() {
               }}
             >
               <LinearGradient
-                colors={["#9AC4FF", "#94A7FE"]}
+                colors={["#9AC4FF", "#6B82FD"]}
                 style={styles.background}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
@@ -188,7 +195,10 @@ export default function SignUpScreen() {
               >
                 Already have an account?{" "}
               </Text>
-              <TouchableOpacity style={{ alignSelf: "flex-start" }}>
+              <TouchableOpacity
+                style={{ alignSelf: "flex-start" }}
+                onPress={() => navigation.navigate("loginscreen")}
+              >
                 <Text style={styles.loginText}>Login</Text>
               </TouchableOpacity>
             </View>
@@ -203,6 +213,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: 30,
   },
   container: {
     marginTop: Spacing.padding.lg,
@@ -272,6 +283,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: Spacing.padding.md,
     width: Dimensions.get("window").width / 1.2,
+    alignContent: "center",
+    alignItems: "center",
   },
   condition: {
     color: Colors.text.secondary,

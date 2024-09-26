@@ -31,70 +31,66 @@ export default function GoalScreen({
   onNext,
 }: GoalScreenProps) {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView>
-        <View style={styles.container}>
-          <View>
-            <Text style={styles.heading}>{heading}</Text>
-            <Text style={styles.subheading}>{subheading}</Text>
-          </View>
-          <LinearGradient
-            colors={["rgba(146, 163, 253, 0.2)", "rgba(146, 163, 253, 0.2)"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.sidebar}
-          />
-          <LinearGradient
-            colors={["rgba(146, 163, 253, 0.2)", "rgba(146, 163, 253, 0.2)"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.sidebar2}
-          />
-          <LinearGradient
-            colors={["#9AC4FF", "#94A7FE"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.bannerContainer}
-          >
-            <Image source={imageSource} style={styles.banner} />
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>{title}</Text>
-              <View style={styles.line} />
-              <Text style={styles.story}>{story}</Text>
-            </View>
-          </LinearGradient>
-
-          <TouchableOpacity onPress={onNext}>
-            <LinearGradient
-              colors={["#9AC4FF", "#94A7FE"]}
-              style={styles.background}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-            >
-              <Text style={{ color: "#ffffff", fontFamily: "PoppinsBold" }}>
-                Confirm
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
+    <ScrollView>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.heading}>{heading}</Text>
+          <Text style={styles.subheading}>{subheading}</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <LinearGradient
+          colors={["rgba(146, 163, 253, 0.2)", "rgba(146, 163, 253, 0.2)"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.sidebar}
+        />
+        <LinearGradient
+          colors={["rgba(146, 163, 253, 0.2)", "rgba(146, 163, 253, 0.2)"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.sidebar2}
+        />
+        <LinearGradient
+          colors={["#9AC4FF", "#6B82FD"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.bannerContainer}
+        >
+          <Image source={imageSource} style={styles.banner} />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{title}</Text>
+            <View style={styles.line} />
+            <Text style={styles.story}>{story}</Text>
+          </View>
+        </LinearGradient>
+
+        <TouchableOpacity onPress={onNext}>
+          <LinearGradient
+            colors={["#9AC4FF", "#6B82FD"]}
+            style={styles.background}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <Text style={{ color: "#ffffff", fontFamily: "PoppinsBold" }}>
+              Confirm
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: Spacing.padding.sm,
-  },
   container: {
     alignItems: "center",
+    marginTop: 30,
   },
   heading: {
     fontFamily: "PoppinsBold",
     fontSize: Spacing.padding.lg,
-    marginTop: Spacing.padding.sm,
+    alignSelf: "center",
+    textAlign: "center",
+    // marginTop: Spacing.padding.sm,
   },
   subheading: {
     fontFamily: "Poppins",
@@ -156,7 +152,6 @@ const styles = StyleSheet.create({
     fontSize: Spacing.fontsizes.md,
     marginBottom: 20,
     color: "#ffffff",
-    fontWeight: "bold",
     fontFamily: "PoppinsBold",
   },
   textContainer: {
