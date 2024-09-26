@@ -6,7 +6,6 @@ import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
 import LaunchScreen from "../launchscreen";
-import SignUpScreen from "../signupscreen";
 import LoginScreen from "../loginscreen";
 
 export default function TabLayout() {
@@ -32,7 +31,6 @@ export default function TabLayout() {
   if (isFirstTimeUser) {
     return <LaunchScreen />;
   }
-
   if (!isAuthenticated && !navigateHome) {
     return <LoginScreen />;
   }

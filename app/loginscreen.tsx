@@ -45,7 +45,7 @@ export default function LoginScreen() {
           <View style={styles.container}>
             <Text
               style={{
-                fontFamily: "Poppins",
+                fontFamily: "PoppinsRegular",
                 color: Colors.brand.headercolor,
               }}
             >
@@ -154,7 +154,7 @@ export default function LoginScreen() {
             >
               <Text
                 style={{
-                  fontFamily: "Poppins",
+                  fontFamily: "PoppinsRegular",
                 }}
               >
                 Don't have an account yet?{" "}
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     paddingHorizontal: 40,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     width: Dimensions.get("window").width / 1.2,
   },
   icon: {
@@ -249,6 +249,6 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: Colors.brand.grad1,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
   },
 });

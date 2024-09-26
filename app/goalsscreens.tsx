@@ -45,14 +45,17 @@ export default function GoalsScreens() {
 
   const stories = [
     "I have a low amount of body fat and need / want to build more muscle",
-    "I’m “skinny fat”. look thin but have no shape. I want to add learn muscle in the right way",
+    "I’m “skinny fat”.I look thin but have no shape. I want to add learn muscle in the right way",
     "I have over 20 lbs to lose. I want to drop all this fat and gain muscle mass",
   ];
 
-  const handleNext = (index: number) => {
+  const handleNext = async (index: number) => {
     if (index === 2) {
-      // setIsFirstTimeUser(false);
-      // AsyncStorage.setItem("fitnessX-FirstTimeUser", JSON.stringify("Not new"));
+      setIsFirstTimeUser(false);
+      await AsyncStorage.setItem(
+        "fitnessX-FirstTimeUser",
+        JSON.stringify("Not new")
+      );
       navigation.navigate("loginscreen");
     } else {
       if (pagerRef.current) {

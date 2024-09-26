@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     // color: Colors.text.primary,
     color: "#ffffff",
     fontSize: Spacing.padding.md,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
   },
   button: {
     padding: Spacing.padding.sm,

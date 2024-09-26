@@ -4,16 +4,20 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  Image,
   View,
   TouchableOpacity,
 } from "react-native";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
+import { AuthenticationContext } from "@/context/AuthenticationContext";
+import { Colors } from "@/constants/Colors";
+import { Spacing } from "@/constants/Spacing";
 
 export default function Home() {
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
-
+  const { user } = useContext(AuthenticationContext);
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
@@ -31,19 +35,29 @@ export default function Home() {
         enableOnAndroid={true}
       >
         <View style={styles.header}>
-          <Text style={styles.greetingText}>Welcome Back,</Text>
-          <Text style={styles.userName}>Stefani Wong</Text>
+          <View style={{ flexDirection: "column", gap: 5 }}>
+            <Text style={styles.greetingText}>Welcome Back, </Text>
+            <Text style={styles.userName}>{user?.fullName}</Text>
+          </View>
           <View style={styles.notificationIcon}>
-            {/* Add your notification icon here */}
+            <Image
+              style={styles.notificationIcon}
+              source={require("../../assets/images/Notificationicon.png")}
+            />
           </View>
         </View>
 
         {/* BMI Card Section */}
-        <LinearGradient colors={["#94A7FE", "#7388FD"]} style={styles.bmiCard}>
+        <LinearGradient
+          colors={["#9AC4FF", "#6B82FD"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.bmiCard}
+        >
           <Text style={styles.bmiTitle}>BMI (Body Mass Index)</Text>
           <Text style={styles.bmiSubtitle}>You have a normal weight</Text>
           <View style={styles.bmiValueContainer}>
-            <Text style={styles.bmiValue}>20,1</Text>
+            <Text style={styles.bmiValue}></Text>
           </View>
           <TouchableOpacity style={styles.viewMoreButton}>
             <Text style={styles.viewMoreText}>View More</Text>
@@ -53,8 +67,15 @@ export default function Home() {
         {/* Today Target Section */}
         <View style={styles.targetContainer}>
           <Text style={styles.targetTitle}>Today Target</Text>
-          <TouchableOpacity style={styles.checkButton}>
-            <Text style={styles.checkButtonText}>Check</Text>
+          <TouchableOpacity>
+            <LinearGradient
+              colors={["#9AC4FF", "#6B82FD"]}
+              style={styles.checkButton}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+            >
+              <Text style={styles.checkButtonText}>Check</Text>
+            </LinearGradient>
           </TouchableOpacity>
         </View>
 
@@ -101,12 +122,12 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: 16,
-    color: "#A1A1A1",
+    color: Colors.text.secondary,
   },
   userName: {
-    fontSize: 24,
-    fontWeight: "bold",
     color: "#333",
+    fontSize: Spacing.fontsizes.md,
+    fontFamily: "PoppinsBold",
   },
   notificationIcon: {
     width: 30,
@@ -128,7 +149,6 @@ const styles = StyleSheet.create({
   bmiTitle: {
     color: "#FFF",
     fontSize: 18,
-    fontWeight: "600",
   },
   bmiSubtitle: {
     color: "#DDD",
@@ -147,22 +167,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bmiValue: {
-    color: "#7388FD",
+    color: "#6B82FD",
     fontSize: 16,
-    fontWeight: "bold",
   },
   viewMoreButton: {
     marginTop: 10,
     backgroundColor: "#EAB8FF",
-    borderRadius: 15,
-    paddingVertical: 5,
+    borderRadius: 20,
+    paddingVertical: 10,
     paddingHorizontal: 20,
     alignSelf: "flex-start",
   },
   viewMoreText: {
     color: "#FFF",
     fontSize: 12,
-    fontWeight: "600",
   },
   targetContainer: {
     flexDirection: "row",
@@ -178,9 +196,9 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   checkButton: {
-    backgroundColor: "#94A7FE",
+    backgroundColor: "#9AC4FF",
     borderRadius: 15,
-    paddingVertical: 5,
+    paddingVertical: 10,
     paddingHorizontal: 20,
   },
   checkButtonText: {
@@ -192,7 +210,6 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "600",
     marginBottom: 15,
   },
   heartRateContainer: {
@@ -206,12 +223,11 @@ const styles = StyleSheet.create({
   },
   heartRateValue: {
     fontSize: 16,
-    fontWeight: "600",
     color: "#333",
   },
   heartRateData: {
     fontSize: 24,
-    fontWeight: "bold",
+
     color: "#4A80FF",
   },
   timeAgo: {
@@ -236,12 +252,11 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: "600",
     color: "#333",
   },
   cardValue: {
     fontSize: 24,
-    fontWeight: "bold",
+
     color: "#4A80FF",
   },
   cardSubtitle: {

@@ -83,7 +83,7 @@ export default function ProfileCreationScreen() {
             </Text>
             <Text
               style={{
-                fontFamily: "Poppins",
+                fontFamily: "PoppinsRegular",
                 color: Colors.text.primary,
                 marginBottom: Spacing.padding.lg,
               }}
@@ -112,7 +112,7 @@ export default function ProfileCreationScreen() {
                   }}
                   itemTextStyle={{
                     color: Colors.text.primary,
-                    fontFamily: "Poppins",
+                    fontFamily: "PoppinsRegular",
                     fontSize: 14,
                   }}
                   itemContainerStyle={{
@@ -136,7 +136,7 @@ export default function ProfileCreationScreen() {
                       style={{
                         color: Colors.text.primary,
                         padding: Spacing.padding.md,
-                        fontFamily: "Poppins",
+                        fontFamily: "PoppinsRegular",
                         marginLeft: Spacing.padding.lg,
                       }}
                     >
@@ -269,14 +269,14 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 40,
     width: Dimensions.get("window").width / 1.4,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     fontSize: 14,
   },
   input2: {
     height: 50,
     paddingHorizontal: 40,
     width: Dimensions.get("window").width / 1.5,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     fontSize: 14,
   },
   inputContainer2: {
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: Dimensions.get("window").width / 1.5,
     alignSelf: "center",
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     zIndex: 10,
     fontSize: 14,
   },

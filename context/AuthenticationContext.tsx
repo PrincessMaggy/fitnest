@@ -61,18 +61,16 @@ export const AuthenticationContextProvider: React.FC<
     setIsLoading(true);
     try {
       const userData = await AsyncStorage.getItem("fitnessX-LoggedInUser");
-      const response = await AsyncStorage.getItem("fitnessX-FirstTimeUser");
-      if (response !== null) {
+      const response: any = await AsyncStorage.getItem(
+        "fitnessX-FirstTimeUser"
+      );
+      let val: any = JSON.parse(response);
+      if (val !== null) {
         setIsFirstTimeUser(false);
-      } else {
-        setIsFirstTimeUser(true);
       }
       if (userData) {
         setUser(JSON.parse(userData));
         setNavigateHome(true);
-      } else {
-        setIsFirstTimeUser(true);
-        setNavigateHome(false);
       }
     } catch (error: any) {
       if (error) {
@@ -95,6 +93,7 @@ export const AuthenticationContextProvider: React.FC<
         fullName: "Princess Maggy",
       };
       setUser(userData);
+      setNavigateHome(true);
       await AsyncStorage.setItem(
         "fitnessX-LoggedInUser",
         JSON.stringify(userData)

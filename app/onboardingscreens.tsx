@@ -50,10 +50,13 @@ export default function OnboardingScreens() {
     "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
   ];
 
-  const handleNext = (index: number) => {
+  const handleNext = async (index: number) => {
     if (index === 3) {
       setIsFirstTimeUser(false);
-      AsyncStorage.setItem("fitnessX-FirstTimeUser", JSON.stringify("Not new"));
+      await AsyncStorage.setItem(
+        "fitnessX-FirstTimeUser",
+        JSON.stringify("Not new")
+      );
       navigation.navigate("signupscreen");
     } else {
       if (pagerRef.current) {

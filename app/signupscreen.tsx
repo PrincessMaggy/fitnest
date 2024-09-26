@@ -48,7 +48,7 @@ export default function SignUpScreen() {
           <View style={styles.container}>
             <Text
               style={{
-                fontFamily: "Poppins",
+                fontFamily: "PoppinsRegular",
                 color: Colors.brand.headercolor,
                 fontSize: 15,
                 marginTop: Spacing.padding.md,
@@ -190,7 +190,7 @@ export default function SignUpScreen() {
             >
               <Text
                 style={{
-                  fontFamily: "Poppins",
+                  fontFamily: "PoppinsRegular",
                 }}
               >
                 Already have an account?{" "}
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     paddingHorizontal: 40,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     width: Dimensions.get("window").width / 1.2,
   },
   icon: {
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   },
   condition: {
     color: Colors.text.secondary,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     width: Dimensions.get("window").width / 1.4,
     fontSize: 12,
     lineHeight: 17,
@@ -303,6 +303,6 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: Colors.brand.grad1,
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
   },
 });

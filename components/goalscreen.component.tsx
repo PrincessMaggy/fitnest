@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     // marginTop: Spacing.padding.sm,
   },
   subheading: {
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     width: Dimensions.get("window").width / 2,
     marginTop: Spacing.padding.sm,
     alignSelf: "center",
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   story: {
     color: "#ffffff",
-    fontFamily: "Poppins",
+    fontFamily: "PoppinsRegular",
     fontSize: 14,
     textAlign: "center",
     width: 250,

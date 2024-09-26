@@ -16,11 +16,12 @@ import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegistrationSuccessScreen() {
   const { setNavigateHome } = useContext(AuthenticationContext);
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
-
+  const navigation: any = useNavigation();
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
@@ -55,7 +56,7 @@ export default function RegistrationSuccessScreen() {
             </Text>
             <Text
               style={{
-                fontFamily: "Poppins",
+                fontFamily: "PoppinsRegular",
                 color: Colors.text.secondary,
                 fontSize: 14,
                 width: "60%",
@@ -68,6 +69,7 @@ export default function RegistrationSuccessScreen() {
             <TouchableOpacity
               onPress={() => {
                 setNavigateHome(true);
+                navigation.navigate("(tabs)");
               }}
             >
               <LinearGradient
