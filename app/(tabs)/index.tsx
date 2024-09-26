@@ -14,6 +14,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
 import { Colors } from "@/constants/Colors";
 import { Spacing } from "@/constants/Spacing";
+import BMICircle from "@/components/bmicircle";
+import HeartRateGraph from "@/components/heartrategraph";
 
 export default function Home() {
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
@@ -40,10 +42,12 @@ export default function Home() {
             <Text style={styles.userName}>{user?.fullName}</Text>
           </View>
           <View style={styles.notificationIcon}>
-            <Image
-              style={styles.notificationIcon}
-              source={require("../../assets/images/Notificationicon.png")}
-            />
+            <TouchableOpacity>
+              <Image
+                style={styles.notificationIcon}
+                source={require("../../assets/images/Notificationicon.png")}
+              />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -54,19 +58,26 @@ export default function Home() {
           end={{ x: 1, y: 0 }}
           style={styles.bmiCard}
         >
-          <Text style={styles.bmiTitle}>BMI (Body Mass Index)</Text>
-          <Text style={styles.bmiSubtitle}>You have a normal weight</Text>
-          <View style={styles.bmiValueContainer}>
-            <Text style={styles.bmiValue}></Text>
+          <View>
+            <Text style={styles.bmiTitle}>BMI (Body Mass Index)</Text>
+            <Text style={styles.bmiSubtitle}>You have a normal weight</Text>
+            <LinearGradient
+              colors={["#EEA4CE", "#C58BF2"]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.viewMoreButton}
+            >
+              <TouchableOpacity>
+                <Text style={styles.viewMoreText}>View More</Text>
+              </TouchableOpacity>
+            </LinearGradient>
           </View>
-          <TouchableOpacity style={styles.viewMoreButton}>
-            <Text style={styles.viewMoreText}>View More</Text>
-          </TouchableOpacity>
+          <BMICircle bmi={22} />
         </LinearGradient>
 
         {/* Today Target Section */}
         <View style={styles.targetContainer}>
-          <Text style={styles.targetTitle}>Today Target</Text>
+          <Text style={styles.targetTitle}>Today's Target</Text>
           <TouchableOpacity>
             <LinearGradient
               colors={["#9AC4FF", "#6B82FD"]}
@@ -83,14 +94,34 @@ export default function Home() {
         <View style={styles.activityStatus}>
           <Text style={styles.sectionTitle}>Activity Status</Text>
           <View style={styles.heartRateContainer}>
-            <Text style={styles.heartRateValue}>Heart Rate</Text>
-            <Text style={styles.heartRateData}>78 BPM</Text>
-            <Text style={styles.timeAgo}>3 mins ago</Text>
+            <HeartRateGraph />
+            <View
+              style={{
+                position: "absolute",
+                flexDirection: "row",
+                top: 50,
+                justifyContent: "space-between",
+                gap: 50,
+              }}
+            >
+              <View>
+                <Text style={styles.heartRateValue}>Heart Rate</Text>
+                {/* <Text style={styles.heartRateData}>78 BPM</Text> */}
+              </View>
+              <LinearGradient
+                colors={["#EEA4CE", "#C58BF2"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.viewMoreButton}
+              >
+                <TouchableOpacity>
+                  <Text style={styles.timeAgo}>3 mins ago</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </View>
           </View>
-          {/* Add your graph or any additional components here */}
         </View>
 
-        {/* Additional Cards (Water Intake, Sleep, etc.) */}
         <View style={styles.cardsContainer}>
           <View style={styles.card}>
             <Text style={styles.cardTitle}>Water Intake</Text>
@@ -118,11 +149,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 30,
+    marginBottom: Spacing.padding.lg,
   },
   greetingText: {
     fontSize: 16,
     color: Colors.text.secondary,
+    fontFamily: "PoppinsRegular",
   },
   userName: {
     color: "#333",
@@ -145,30 +177,18 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 20,
     marginBottom: 20,
+    flexDirection: "row",
   },
   bmiTitle: {
     color: "#FFF",
     fontSize: 18,
+    fontFamily: "PoppinsRegular",
   },
   bmiSubtitle: {
-    color: "#DDD",
+    color: "#ffffff",
     fontSize: 14,
     marginVertical: 5,
-  },
-  bmiValueContainer: {
-    position: "absolute",
-    top: 20,
-    right: 20,
-    backgroundColor: "#FFF",
-    borderRadius: 50,
-    width: 50,
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  bmiValue: {
-    color: "#6B82FD",
-    fontSize: 16,
+    fontFamily: "PoppinsRegular",
   },
   viewMoreButton: {
     marginTop: 10,
@@ -193,7 +213,8 @@ const styles = StyleSheet.create({
   },
   targetTitle: {
     fontSize: 16,
-    color: "#333",
+    fontFamily: "PoppinsRegular",
+    color: Colors.ui.secondary,
   },
   checkButton: {
     backgroundColor: "#9AC4FF",
@@ -204,16 +225,18 @@ const styles = StyleSheet.create({
   checkButtonText: {
     color: "#FFF",
     fontSize: 12,
+    fontFamily: "PoppinsRegular",
   },
   activityStatus: {
     marginBottom: 20,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 15,
+    fontFamily: "PoppinsBold",
   },
   heartRateContainer: {
-    flexDirection: "row",
+    // flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#E9F0FF",
@@ -224,15 +247,17 @@ const styles = StyleSheet.create({
   heartRateValue: {
     fontSize: 16,
     color: "#333",
+    fontFamily: "PoppinsRegular",
   },
   heartRateData: {
     fontSize: 24,
-
+    fontFamily: "PoppinsRegular",
     color: "#4A80FF",
   },
   timeAgo: {
     fontSize: 12,
-    color: "#AAA",
+    color: "#ffffff",
+    fontFamily: "PoppinsRegular",
   },
   cardsContainer: {
     flexDirection: "row",
@@ -253,14 +278,16 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 16,
     color: "#333",
+    fontFamily: "PoppinsRegular",
   },
   cardValue: {
-    fontSize: 24,
-
-    color: "#4A80FF",
+    fontSize: 16,
+    fontFamily: "PoppinsRegular",
+    color: "#9AC4FF",
   },
   cardSubtitle: {
     fontSize: 12,
     color: "#AAA",
+    fontFamily: "PoppinsRegular",
   },
 });

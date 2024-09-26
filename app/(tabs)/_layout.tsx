@@ -61,7 +61,7 @@ export default function TabLayout() {
           title: "Activity Tracker",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "home" : "home-outline"}
+              name={focused ? "stats-chart-sharp" : "stats-chart-outline"}
               color={color}
             />
           ),
