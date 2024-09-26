@@ -46,7 +46,7 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack>
+          <Stack screenOptions={{ gestureEnabled: true }}>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen
               name="launchscreen"
@@ -71,6 +71,10 @@ export default function RootLayout() {
             <Stack.Screen name="loginscreen" options={{ headerShown: false }} />
             <Stack.Screen
               name="registrationsuccessscreen"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="notificationsscreen"
               options={{ headerShown: false }}
             />
             <Stack.Screen name="+not-found" />

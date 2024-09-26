@@ -16,8 +16,10 @@ import { Colors } from "@/constants/Colors";
 import { Spacing } from "@/constants/Spacing";
 import BMICircle from "@/components/bmicircle";
 import HeartRateGraph from "@/components/heartrategraph";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
+  const navigation: any = useNavigation();
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
   const { user } = useContext(AuthenticationContext);
   return (
@@ -42,7 +44,9 @@ export default function Home() {
             <Text style={styles.userName}>{user?.fullName}</Text>
           </View>
           <View style={styles.notificationIcon}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("notificationsscreen")}
+            >
               <Image
                 style={styles.notificationIcon}
                 source={require("../../assets/images/Notificationicon.png")}
