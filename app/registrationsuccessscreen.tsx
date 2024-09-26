@@ -67,8 +67,8 @@ export default function RegistrationSuccessScreen() {
 
             <TouchableOpacity
               onPress={() => {
-                // navigation.navigate("home");
-                Alert.alert("Coming Soon");
+                navigation.navigate("home");
+                // Alert.alert("Coming Soon");
               }}
             >
               <LinearGradient

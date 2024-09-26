@@ -29,7 +29,7 @@ export default function RootLayout() {
         Poppins: require("../assets/fonts/Poppins-Black.ttf"),
         PoppinsItalic: require("../assets/fonts/Poppins-BlackItalic.ttf"),
         PoppinsBold: require("../assets/fonts/Poppins-Bold.ttf"),
-        Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
+        PoppinsRegular: require("../assets/fonts/Poppins-Regular.ttf"),
       });
     }
     loadFonts().then(() => setFontLoaded(true));

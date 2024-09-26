@@ -7,6 +7,8 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { AuthenticationContext } from "@/context/AuthenticationContext";
 import LaunchScreen from "../launchscreen";
 import SignUpScreen from "../signupscreen";
+import Home from "../home";
+import LoginScreen from "../loginscreen";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -35,7 +37,7 @@ export default function TabLayout() {
   }
 
   if (!isAuthenticated) {
-    return <SignUpScreen />;
+    return <LoginScreen />;
   }
   return (
     <Tabs

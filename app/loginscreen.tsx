@@ -10,13 +10,14 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { Spacing } from "@/constants/Spacing";
 import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { AuthenticationContext } from "@/context/AuthenticationContext";
 
 export default function LoginScreen() {
   const navigation: any = useNavigation();
@@ -24,6 +25,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
+  const { onLogin } = useContext(AuthenticationContext);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -99,6 +101,7 @@ export default function LoginScreen() {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("registrationsuccessscreen");
+                // onLogin(email, password);
               }}
             >
               <LinearGradient

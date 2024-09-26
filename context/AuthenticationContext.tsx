@@ -55,13 +55,14 @@ export const AuthenticationContextProvider: React.FC<
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
 
   const checkUserSession = async () => {
-    AsyncStorage.clear();
+    // AsyncStorage.clear();
     setIsLoading(true);
     try {
       const response = await AsyncStorage.getItem("fitnessX-FirstTimeUser");
       if (response !== null) {
         setIsFirstTimeUser(false);
       } else {
+        setIsFirstTimeUser(true);
       }
     } catch (error: any) {
       if (error) {
@@ -77,36 +78,19 @@ export const AuthenticationContextProvider: React.FC<
     const abortController = new AbortController();
     const timeoutId = setTimeout(() => abortController.abort(), 60000);
     setIsLoading(true);
-
     try {
-      const response = await axios.post(
-        "https://",
-        {
-          identity,
-          password,
-          token: "apikey",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          signal: abortController.signal,
-        }
+      let userData = {
+        user_role: "User",
+        email: "edoziemagdalene@gmail.com",
+        fullName: "Princess Maggy",
+      };
+      setUser(userData);
+      await AsyncStorage.setItem(
+        "fitnessX-LoggedInUser",
+        JSON.stringify(userData)
       );
-      if (response.status == 200) {
-        const data = await response.data;
-        const userData = {
-          user_role: data.user_role,
-          email: data.email,
-          fullName: data.fullName,
-        };
-        if (data) {
-          await AsyncStorage.setItem("fitnessX-user", JSON.stringify(userData));
-          setUser(userData);
-        }
-      }
     } catch (error: any) {
-      if (error?.response?.data?.status == 400) {
+      if (error) {
         setErrorMsg("Login failed. Please put in a valid email/password");
         return;
       }
