@@ -1,24 +1,17 @@
 import {
   SafeAreaView,
   StatusBar,
-  Text,
   View,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
-  Image,
 } from "react-native";
-import { useState, useRef } from "react";
-import { Spacing } from "@/constants/Spacing";
-import { Colors } from "@/constants/Colors";
+import { useRef } from "react";
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 import NotificationScreen from "@/components/notificationscreen.component";
+import HeaderComponent from "@/components/header.component";
 
 export default function NotificationsScreen() {
-  const navigation: any = useNavigation();
-
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
   const imageSources = [
     require("../assets/images/notify1.png"),
@@ -45,28 +38,7 @@ export default function NotificationsScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 15,
-          justifyContent: "space-between",
-        }}
-      >
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image
-            source={require("../assets/images/back_nav.png")}
-            style={styles.backarrow}
-          />
-        </TouchableOpacity>
-        <View>
-          <Text>Notification</Text>
-        </View>
-        <Image
-          source={require("../assets/images/notification.png")}
-          style={styles.notification}
-        />
-      </View>
+      <HeaderComponent title="Notification" />
       <KeyboardAwareScrollView
         keyboardShouldPersistTaps="handled"
         ref={scrollViewRef}
@@ -101,19 +73,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingTop: 30,
-  },
-
-  backIcon: {
-    width: 24,
-    height: 24,
-  },
-  backarrow: {
-    width: 50,
-    height: 50,
-  },
-  notification: {
-    width: 20,
-    height: 20,
-    resizeMode: "contain",
   },
 });
