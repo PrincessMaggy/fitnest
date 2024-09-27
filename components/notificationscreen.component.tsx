@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     color: Colors.text.primary,
     fontFamily: "PoppinsRegular",
     fontSize: 12,
-    textAlign: "left",
   },
 
   title: {
@@ -65,12 +64,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: Colors.ui.secondary,
     fontFamily: "PoppinsRegular",
-    textAlign: "left",
   },
   textContainer: {
     paddingTop: Spacing.padding.md,
+    paddingLeft: Spacing.padding.md,
     textAlign: "center",
-    alignContent: "flex-start",
+    flex: 1,
   },
 
   line: {
