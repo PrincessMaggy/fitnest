@@ -69,7 +69,7 @@ export default function GoalsScreens() {
       style={{
         flex: 1,
         backgroundColor: "#fff",
-        paddingTop: 30,
+        paddingTop: Spacing.padding.xl,
       }}
     >
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />

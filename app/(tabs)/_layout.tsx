@@ -67,6 +67,32 @@ export default function TabLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="progresstracker"
+        options={{
+          title: "Progress Tracker",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "camera" : "camera-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "person-sharp" : "person-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

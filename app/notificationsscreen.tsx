@@ -10,6 +10,7 @@ import { useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import NotificationScreen from "@/components/notificationscreen.component";
 import HeaderComponent from "@/components/header.component";
+import { Spacing } from "@/constants/Spacing";
 
 export default function NotificationsScreen() {
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
@@ -72,6 +73,6 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 30,
+    paddingTop: Spacing.padding.xl,
   },
 });

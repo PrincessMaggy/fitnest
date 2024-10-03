@@ -29,6 +29,8 @@ export const Colors = {
     muted: "#C6DAF7",
     grad1: "#C58BF2",
     grad2: "#EEA4CE",
+    grad3: "#9AC4FF",
+    grad4: "#6B82FD",
     gray: "#131313",
     headercolor: "#1D1617",
   },
@@ -43,6 +45,7 @@ export const Colors = {
     primary: "#F7F8F8",
     secondary: "#F1F1F1",
     tertiary: "#FFF9EB",
+    light: "#E9F0FF",
   },
   text: {
     primary: "#7B6F72",

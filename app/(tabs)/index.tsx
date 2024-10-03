@@ -39,7 +39,7 @@ export default function Home() {
         enableOnAndroid={true}
       >
         <View style={styles.header}>
-          <View style={{ flexDirection: "column", gap: 5 }}>
+          <View style={{ flexDirection: "column", gap: Spacing.padding.sm }}>
             <Text style={styles.greetingText}>Welcome Back, </Text>
             <Text style={styles.userName}>{user?.fullName}</Text>
           </View>
@@ -57,7 +57,7 @@ export default function Home() {
 
         {/* BMI Card Section */}
         <LinearGradient
-          colors={["#9AC4FF", "#6B82FD"]}
+          colors={[Colors.brand.grad3, Colors.brand.grad4]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.bmiCard}
@@ -66,7 +66,7 @@ export default function Home() {
             <Text style={styles.bmiTitle}>BMI (Body Mass Index)</Text>
             <Text style={styles.bmiSubtitle}>You have a normal weight</Text>
             <LinearGradient
-              colors={["#EEA4CE", "#C58BF2"]}
+              colors={[Colors.brand.grad2, Colors.brand.grad1]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.viewMoreButton}
@@ -84,7 +84,7 @@ export default function Home() {
           <Text style={styles.targetTitle}>Today's Target</Text>
           <TouchableOpacity>
             <LinearGradient
-              colors={["#9AC4FF", "#6B82FD"]}
+              colors={[Colors.brand.grad3, Colors.brand.grad4]}
               style={styles.checkButton}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
@@ -103,9 +103,9 @@ export default function Home() {
               style={{
                 position: "absolute",
                 flexDirection: "row",
-                top: 50,
+                top: Spacing.padding.xxl,
                 justifyContent: "space-between",
-                gap: 50,
+                gap: Spacing.padding.xxl,
               }}
             >
               <View>
@@ -113,7 +113,7 @@ export default function Home() {
                 {/* <Text style={styles.heartRateData}>78 BPM</Text> */}
               </View>
               <LinearGradient
-                colors={["#EEA4CE", "#C58BF2"]}
+                colors={[Colors.brand.grad2, Colors.brand.grad1]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.viewMoreButton}
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: 30,
+    paddingTop: Spacing.padding.xl,
   },
   header: {
     flexDirection: "row",
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     backgroundColor: "#FFF",
-    borderRadius: 15,
+    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#E9F0FF",
+    backgroundColor: Colors.bg.light,
     borderRadius: 20,
     padding: 15,
     marginBottom: 20,
@@ -221,8 +221,8 @@ const styles = StyleSheet.create({
     color: Colors.ui.secondary,
   },
   checkButton: {
-    backgroundColor: "#9AC4FF",
-    borderRadius: 15,
+    backgroundColor: Colors.brand.grad3,
+    borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
