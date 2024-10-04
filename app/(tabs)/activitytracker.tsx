@@ -158,7 +158,7 @@ export default function ActivityTracker() {
           <View style={styles.latestActivity}>
             <Text style={styles.latestActivityLabel}>Latest Activity</Text>
             <TouchableOpacity>
-              <Text>See more</Text>
+              <Text style={{ color: Colors.text.secondary }}>See more</Text>
             </TouchableOpacity>
           </View>
 
