@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "#FF6699",
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "PoppinsBold",
   },
 });
 

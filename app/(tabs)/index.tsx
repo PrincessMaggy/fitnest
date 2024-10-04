@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   checkButton: {
     backgroundColor: Colors.brand.grad3,
     borderRadius: 20,
-    paddingVertical: 10,
+    paddingVertical: 7,
     paddingHorizontal: 20,
   },
   checkButtonText: {

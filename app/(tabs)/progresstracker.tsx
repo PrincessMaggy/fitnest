@@ -2,6 +2,7 @@ import { SafeAreaView, StatusBar, Text, StyleSheet, View } from "react-native";
 import { useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Spacing } from "@/constants/Spacing";
+import HeaderComponent from "@/components/header.component";
 
 export default function ProgressTracker() {
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
@@ -23,7 +24,7 @@ export default function ProgressTracker() {
         enableOnAndroid={true}
       >
         <View>
-          <Text>progress tracker</Text>
+          <HeaderComponent title="Progress Photo" />
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>

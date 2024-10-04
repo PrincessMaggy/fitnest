@@ -200,7 +200,6 @@ const styles = StyleSheet.create({
   },
   targetLabel: {
     fontSize: Spacing.fontsizes.md,
-    fontWeight: "bold",
     marginBottom: 10,
   },
   addbtn: {
@@ -229,8 +228,8 @@ const styles = StyleSheet.create({
   },
   targetValue: {
     fontSize: Spacing.fontsizes.md,
-    fontWeight: "bold",
     color: Colors.brand.primary,
+    fontFamily: "PoppinsBold",
   },
   targetText: {
     fontSize: 12,
@@ -240,13 +239,13 @@ const styles = StyleSheet.create({
 
   latestActivityLabel: {
     fontSize: Spacing.fontsizes.md,
-    fontWeight: "bold",
     marginBottom: 10,
+    fontFamily: "PoppinsBold",
   },
   checkButton: {
     backgroundColor: Colors.brand.grad3,
     borderRadius: 20,
-    paddingVertical: 10,
+    paddingVertical: 7,
     paddingHorizontal: 20,
   },
   checkButtonText: {
@@ -260,7 +259,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 20,
     padding: 5,
-    marginBottom: 20,
     marginLeft: 15,
     marginRight: 15,
   },
