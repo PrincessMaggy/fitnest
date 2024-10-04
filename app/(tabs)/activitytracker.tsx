@@ -12,19 +12,24 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Colors } from "@/constants/Colors";
 import HeaderComponent from "@/components/header.component";
 import { Spacing } from "@/constants/Spacing";
-import { BarChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import LatestActivity from "@/components/latestactivity.component";
+import { BarChart } from "react-native-gifted-charts";
 
 const screenWidth = Dimensions.get("window").width;
-const data = {
-  labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  datasets: [
-    {
-      data: [50, 20, 70, 80, 40, 60, 90],
-    },
-  ],
+const data = [
+  { value: 50, label: "Sun" },
+  { value: 20, label: "Mon" },
+  { value: 70, label: "Tue" },
+  { value: 80, label: "Wed" },
+  { value: 40, label: "Thu" },
+  { value: 60, label: "Fri" },
+  { value: 90, label: "Sat" },
+];
+
+const getBarColors = (index: number) => {
+  return index % 2 === 0 ? Colors.brand.grad2 : Colors.brand.grad4;
 };
 
 export default function ActivityTracker() {
@@ -106,42 +111,46 @@ export default function ActivityTracker() {
               </LinearGradient>
             </TouchableOpacity>
           </View>
-          <View style={{ marginLeft: 15, marginRight: 15 }}>
+          <View
+            style={{
+              margin: 15,
+              shadowColor: "#000",
+              backgroundColor: "#fff",
+              shadowOffset: { width: 0, height: 2 },
+              borderRadius: 15,
+              shadowOpacity: 0.1,
+              shadowRadius: 3,
+              paddingBottom: 20,
+              elevation: 5,
+            }}
+          >
             <BarChart
-              data={data}
-              width={screenWidth - 50}
+              data={data.map((item, index) => ({
+                ...item,
+                frontColor: getBarColors(index),
+              }))}
+              width={screenWidth - 100}
               height={220}
-              chartConfig={{
-                backgroundColor: "#ffffff",
-                backgroundGradientFrom: "#ffffff",
-                backgroundGradientTo: "#ffffff",
-                decimalPlaces: 0,
-                color: () => Colors.brand.grad4,
-                labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                style: {
-                  borderRadius: 16,
-                },
-                propsForBackgroundLines: {
-                  strokeWidth: 0,
-                },
+              barWidth={22}
+              spacing={22}
+              noOfSections={4}
+              yAxisThickness={0}
+              yAxisLabelTexts={[]}
+              xAxisThickness={0}
+              yAxisTextStyle={{
+                color: "#fff",
               }}
-              withHorizontalLabels={false}
-              withInnerLines={false}
-              style={{
-                marginVertical: 8,
-                borderRadius: 20,
-                backgroundColor: "#FFF",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-                shadowColor: "#000",
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.1,
-                shadowRadius: 3,
-                padding: 20,
+              hideRules
+              showGradient
+              gradientColor={(Colors.brand.grad1, Colors.brand.grad3)}
+              initialSpacing={15}
+              roundedTop
+              barBorderRadius={10}
+              xAxisLabelTextStyle={{
+                color: Colors.text.primary,
+                fontSize: 12,
+                fontFamily: "PoppinsRegular",
               }}
-              yAxisLabel=""
-              yAxisSuffix="L"
             />
           </View>
 

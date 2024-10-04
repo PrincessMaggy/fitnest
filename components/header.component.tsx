@@ -15,6 +15,7 @@ const HeaderComponent = ({ title }: HeaderComponentProps) => {
         alignItems: "center",
         padding: 15,
         justifyContent: "space-between",
+        marginBottom: 10,
       }}
     >
       <TouchableOpacity onPress={() => navigation.goBack()}>
