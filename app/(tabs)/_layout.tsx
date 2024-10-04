@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, Platform } from "react-native";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -40,6 +40,12 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarStyle: Platform.select({
+          android: {
+            paddingBottom: 10,
+            height: 60,
+          },
+        }),
       }}
     >
       <Tabs.Screen

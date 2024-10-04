@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
+    elevation: 5,
   },
   bmiCard: {
     borderRadius: 20,
@@ -278,6 +279,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
+    elevation: 5,
   },
   cardTitle: {
     fontSize: 16,
