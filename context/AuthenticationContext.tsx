@@ -57,7 +57,7 @@ export const AuthenticationContextProvider: React.FC<
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
 
   const checkUserSession = async () => {
-    // AsyncStorage.clear();
+    AsyncStorage.clear();
     setIsLoading(true);
     try {
       const userData = await AsyncStorage.getItem("fitnessX-LoggedInUser");
