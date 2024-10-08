@@ -15,7 +15,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as Sentry from "@sentry/react-native";
 
 Sentry.init({
-  dsn: "https://7a8844af21134f252643b05485620af5@o4507038565662720.ingest.us.sentry.io/4508018221514752",
+  dsn: "https://b93c791ba74fe7f6a7ac05a6d5ccb6d9@o4507038565662720.ingest.us.sentry.io/4508086712795136",
 });
 
 export default function RootLayout() {

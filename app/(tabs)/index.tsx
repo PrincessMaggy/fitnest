@@ -22,6 +22,7 @@ export default function Home() {
   const navigation: any = useNavigation();
   const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
   const { user } = useContext(AuthenticationContext);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
